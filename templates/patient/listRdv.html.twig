@@ -1,0 +1,21 @@
+                        <table class="table table-striped">
+                        {% for rdv in rd %}
+                            <thead>
+                            <th> Id</th>
+                            <th> date</th>
+                            <th> valid </th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> {{rdv.id}}</td>
+
+                                <td> {{rdv.dat|date('Y-m-d') }}</td>
+                                {% if (rdv.valid)==0 %}
+                                <td> false </td>
+                                {%else%}
+                                <td> true </td>
+                                {% endif%}
+                            </tr> 
+                            </tbody>
+                        {% endfor %}
+                        </table>

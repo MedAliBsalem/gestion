@@ -17,6 +17,13 @@ class Rdv
     #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTimeInterface $dat = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $patient = null;
+
+    #[ORM\Column]
+    private ?bool $valid = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +37,30 @@ class Rdv
     public function setDat(\DateTimeInterface $dat): self
     {
         $this->dat = $dat;
+
+        return $this;
+    }
+
+    public function getPatient(): ?User
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?User $patient): self
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function isValid(): ?bool
+    {
+        return $this->valid;
+    }
+
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
 
         return $this;
     }
