@@ -8,5 +8,11 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  colors:{
+    tertiary: '#FFB951',
+    primary: '#0B77D6',
+    secondary: '#ADD9C9',
+    dark100: '#03223D',
+  }
 }
 

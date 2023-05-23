@@ -1,20 +1,44 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello HomeController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Dali/Desktop/symf/gestionCab/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Dali/Desktop/symf/gestionCab/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+</head>
+<body class="h-screen">
+    <header class="flex justify-between items-center h-16 mx-10">
+        <h1>Logo</h1>
+        <div class="flex justify-center items-center">
+            <a class="mx-5 text-sm px-4 py-2" href="{{ path('app_login') }}">Connexion</a>
+            <a class="bg-amber-400 rounded text-sm px-4 py-2" href="{{ path('registration') }}">S'inscrire</a>
+        </div>
+    </header>
+    <section class="flex px-11 h-screen">
+        <div class="flex-col mb-10 items-center h-full w-1/2">
+            <h1
+                class="mt-14 mb-7 text-5xl leading-relaxed font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-emerald-100">
+                Nous travaillons pour votre<br>santé à chaque visite.</h1>
+            <a class="bg-amber-400 rounded text-sm px-4 py-2" href="#">Réservez maintenant</a>
+        </div>
+        <div class="overflow-hidden items-center w-1/2 bg-contain bg-no-repeat bg-center">
+        <img src="images/women.png">
+        </div>
+    </section>
+    <footer class="flex justify-between items-center h-36 bg-emerald-100 p-6">
+        <div class="flex items-center ">
+            <img class="me-4" src="images/Add-User.svg" alt="Add-user">
+            <p class="text-3xl font-semibold text-dark100">S’inscrire</p>
+        </div>
+        <div class="flex items-center ">
+            <img class="me-4" src="images/Calendar.svg" alt="Calendar">
+            <p class="text-3xl font-semibold text-dark100">Choisir votre rendez-vous</p>
+        </div>
+        <div class="flex items-center ">
+            <img class="me-4" src="images/Heart.svg" alt="Heart">
+            <p class="text-3xl font-semibold text-dark100">Consultez votre docteur</p>
+        </div>
+    </footer>
+</body>
+</html>
