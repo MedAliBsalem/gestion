@@ -65,6 +65,7 @@ class PatientController extends AbstractController
         
         return $this->render('patient/addRdv.html.twig', [
             'form' => $form->createView(),
+            'idVariable' => $id
         ]);
     }
 }

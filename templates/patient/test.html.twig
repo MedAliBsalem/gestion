@@ -86,43 +86,37 @@
       class="flex-col relative items-center bg-gradient-to-r from-sky-300 to-emerald-100 p-10 rounded-3xl h-96 w-full">
       <div class="flex items-center">
         <h1 class="text-sky-950 text-start text-7xl font-bold">Nous travaillons pour votre santé à chaque visite.</h1>
-        <img class="w-80" src="{{ asset('images/bg-image.png') }}" alt="">
+        <img class="w-80" src="images/bg-image.png" alt="">
       </div>
-      <div class="absolute inset-x-auto -bottom-10 bg-white w-fit h-11 p-12 drop-shadow-lg flex items-center rounded-2xl m-auto">
-  
+      <div
+        class="absolute inset-x-auto -bottom-10 bg-white w-fit h-11 p-12 drop-shadow-lg flex items-center rounded-2xl m-auto">
+        <form>
           <div class="flex content-between w-full">
-              <form class="flex " action="{{ path('addRdv', {'id': idVariable}) }}" method="POST">
-                {{ form_start(form) }}
-                <div>
-                    {{ form_widget(form.date) }}
-                </div>
-                <div>
-                    {{ form_widget(form.time) }}
-                </div>
-                <button type="submit"
-                          class="text-white bg-amber-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">
-                          Reservez</button>
+            <div>
+              <input type="datetime-local" id="date"
+                class="bg-gray-50 border mr-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                required>
+            </div>
 
-                {{ form_end(form) }}
-            </form>
+            <button type="submit"
+              class="text-white bg-amber-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">Reservez</button>
           </div>
+        </form>
       </div>
-
-      
     </div>
 
   </section>
   <footer class="flex justify-between items-center h-48 px-11">
     <div class="flex mr-9 items-center ">
-      <img class="me-4" src="{{ asset('images/Add-User.svg') }}" alt="Add-User">
+      <img class="me-4" src="images/Add-User.svg" alt="Add-User">
       <p class="text-3xl font-semibold text-dark100">S'inscrire</p>
   </div>
     <div class="flex mr-9 items-center ">
-        <img class="me-4" src="{{ asset('images/Calendar.svg') }}" alt="Calendar">
+        <img class="me-4" src="./images/Calendar.svg" alt="Calendar">
         <p class="text-3xl font-semibold text-dark100">Choisir votre rendez-vous</p>
     </div>
     <div class="flex items-center ">
-        <img class="me-4" src="{{ asset('images/Heart.svg') }}" alt="Heart">
+        <img class="me-4" src="images/Heart.svg" alt="Heart">
         <p class="text-3xl font-semibold text-dark100">Consultez votre docteur</p>
     </div>
 </footer>
