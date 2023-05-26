@@ -47,10 +47,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         $user = $token->getUser();
-        if(in_array('ROLE_USER',$user->getRoles(),true)){
-            return new RedirectResponse($this->urlGenerator->generate('addRdv',['id' => $user->getId()]));
+        if (in_array('ROLE_SEC', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('sec_dashboard'));
         }
         // For example:
+        return new RedirectResponse($this->urlGenerator->generate('addRdv',['id' => $user->getId()]));
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

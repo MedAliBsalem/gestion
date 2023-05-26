@@ -1,0 +1,31 @@
+<table class="table table-striped">
+                        <thead>
+                            <th> Id Rdv</th>
+                            <th> Id Patient</th>
+                            <th> Date</th>
+                            <th> Heure </th>
+                            <th> Validité </th>
+
+                        </thead>
+                        <tbody>
+                        {% for rdv in r %}
+                            <tr>
+                                <td> {{rdv.id}}</td>
+                                <td> {{rdv.patient.id}}</td>
+                                <td> {{rdv.date|date('Y-m-d')}}</td>
+                                <td> {{rdv.time|date('H:i:s')}}</td>
+                                <td> {{rdv.valid}}</td>
+
+
+                                <td>
+                                    <a href="#">Modifier</a>
+                                </td>
+
+                                <td>
+                                    <a href="#">Supprimer</a>
+                                </td>
+
+                            </tr> 
+                        {% endfor %}
+                        </tbody>
+<table>
