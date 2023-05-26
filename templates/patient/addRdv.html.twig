@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">
+          <a href="{{path('app_patient',{'id':idVariable})}}" type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">
             <span class="mr-2">Profil</span>
             <span>
               <svg width="24px"  height="24px"  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -59,8 +59,8 @@
                 </g>
             </svg>
             </span>
-          </button>
-          <button type="button" class="flex items-center border-2 border-gray-400 bg-white text-gray-600 mr-4 rounded-lg text-sm px-4 py-2">
+          </a>
+          <a href="{{ path('app_logout') }}" type="button" class="flex items-center border-2 border-gray-400 bg-white text-gray-600 mr-4 rounded-lg text-sm px-4 py-2">
             <span class="mr-2">Déconnexion</span>
             <span>
               <svg width="24px"  height="24px"  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -74,7 +74,7 @@
                 </g>
             </svg>
             </span>
-          </button>
+          </a>
 
        
         </div>

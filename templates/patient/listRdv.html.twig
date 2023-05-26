@@ -1,23 +1,254 @@
-                        <table class="table table-striped">
-                        {% for rdv in rd %}
-                            <thead>
-                            <th> Id</th>
-                            <th> date</th>
-                            <th> valid </th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td> {{rdv.id}}</td>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+</head>
+<body>
+  <nav class="bg-white w-full">
+    <div class="mx-auto w-full px-10">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button type="button"
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
+              Icon when menu is open.
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <img class="block h-8 w-auto lg:hidden"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+            <img class="hidden h-8 w-auto lg:block"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <a href="{{path('app_patient',{'id':id})}}" type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">
+            <span class="mr-2">Profil</span>
+            <span>
+              <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>Iconly/Light/Profile</title>
+                <g id="Iconly/Light/Profile" stroke="#000000" stroke-width="1.5" fill="none" fill-rule="evenodd"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <g id="Profile" transform="translate(4.814286, 2.814476)" stroke="#000000">
+                    <path
+                      d="M7.17047619,12.531714 C3.30285714,12.531714 -4.08562073e-14,13.1164759 -4.08562073e-14,15.4583807 C-4.08562073e-14,17.8002854 3.28190476,18.4059997 7.17047619,18.4059997 C11.0380952,18.4059997 14.34,17.8202854 14.34,15.479333 C14.34,13.1383807 11.0590476,12.531714 7.17047619,12.531714 Z"
+                      id="Stroke-1" stroke-width="1.5"></path>
+                    <path
+                      d="M7.17047634,9.19142857 C9.70857158,9.19142857 11.7657144,7.13333333 11.7657144,4.5952381 C11.7657144,2.05714286 9.70857158,-5.32907052e-15 7.17047634,-5.32907052e-15 C4.6323811,-5.32907052e-15 2.574259,2.05714286 2.574259,4.5952381 C2.56571443,7.1247619 4.60952396,9.18285714 7.13809539,9.19142857 L7.17047634,9.19142857 Z"
+                      id="Stroke-3" stroke-width="1.5"></path>
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </a>
+          <a href="{{ path('app_logout') }}" type="button"
+            class="flex items-center border-2 border-gray-400 bg-white text-gray-600 mr-4 rounded-lg text-sm px-4 py-2">
+            <span class="mr-2">Déconnexion</span>
+            <span>
+              <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>Iconly/Light/Logout</title>
+                <g id="Iconly/Light/Logout" stroke="#000000" stroke-width="1.5" fill="none" fill-rule="evenodd"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <g id="Logout" transform="translate(2.000000, 2.000000)" stroke="#475569" stroke-width="1.5">
+                    <path
+                      d="M13.016,5.3895 L13.016,4.4565 C13.016,2.4215 11.366,0.7715 9.331,0.7715 L4.456,0.7715 C2.422,0.7715 0.772,2.4215 0.772,4.4565 L0.772,15.5865 C0.772,17.6215 2.422,19.2715 4.456,19.2715 L9.341,19.2715 C11.37,19.2715 13.016,17.6265 13.016,15.5975 L13.016,14.6545"
+                      id="Stroke-1"></path>
+                    <line x1="19.8095" y1="10.0214" x2="7.7685" y2="10.0214" id="Stroke-3"></line>
+                    <polyline id="Stroke-5" points="16.8812 7.1063 19.8092 10.0213 16.8812 12.9373"></polyline>
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </a>
 
-                                <td> {{rdv.dat|date('Y-m-d') }}</td>
-                                {% if (rdv.valid)==0 %}
-                                <td> false </td>
-                                {%else%}
-                                <td> true </td>
-                                {% endif%}
-                            </tr> 
-                            </tbody>
-                        {% endfor %}
-                        </table>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="px-10 flex-col items-center content-center h-full">
+    <div
+      class="flex-col relative items-center bg-gradient-to-r from-sky-300 to-emerald-100 p-10 rounded-3xl h-full w-full">
+      <div>
+        <section class="grid grid-cols-3 gap-4 items-start justify-center">
+          <div class="flex-row justify-self-end">
+            <h1 class="text-2xl font-semibold pb-8">Profil</h1>
+            <div class="pt-8 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+              <div class="flex flex-col items-center pb-10">
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="images/02.jpg" alt="Bonnie image" />
+                <h5 class="mb-1 text-xl font-medium text-gray-900">{{user.nom}} {{user.prenom}}</h5>
+                <span class="text-sm text-gray-500">EMAIL</span>
+                <span class="text-base font-medium leading-tight text-sky-950">{{user.email}}</span>
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a href="#"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Modifier</a>
+                  <a href="#"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200">Supprimer</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="flex-auto justify-center">
+            <h1 class="text-2xl font-semibold pb-8">Historique des rendez-vous</h1>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table class="w-full text-sm text-left text-gray-500">
+                
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" class="px-6 py-3">
+                      Id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Heure
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                {% for rdv in rd %}
+                <tbody>
+                  <tr class="bg-white border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                      {{rdv.id}}
+                    </th>
+                    <td class="px-6 py-4">
+                       {{rdv.date|date('Y-m-d') }}
+                    </td>
+                    <td class="px-6 py-4">
+                      {{ rdv.time|date('H:i:s') }}
+                    </td>
+                    {% if (rdv.valid)==0 %}
+                    <td class="px-6 py-4 text-red-600">
+                      En attente
+                    </td>
+                    {%else%}
+                    <td class="px-6 py-4 text-green-600">
+                      Confirmé
+                    </td>
+                    {% endif%}
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+          <div>
+            <div>
+              <h5 class="text-2xl font-semibold pb-8">Fiche patient</h5>
+              <!-- List -->
+              <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+                <ul role="list" class="space-y-5 my-7">
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">ID de patient:</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">1236586</span>
+                  </li>
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Sexe:</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">Homme</span>
+                  </li>
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Naissance:</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">01/01/1994</span>
+                  </li>
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500">Groupes sanguins:</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">A+</span>
+                  </li>
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Taille</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">180cm</span>
+                  </li>
+                  <li class="flex space-x-3">
+                    <!-- Icon -->
+                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-green-600 " fill="currentColor"
+                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <title>Check icon</title>
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Poids</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">80Kg</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
 
                         

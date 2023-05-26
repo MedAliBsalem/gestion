@@ -46,14 +46,13 @@
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">
+          <a href="{{path('registration')}}" type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">
             <span>S'inscrire</span>
-
-          </button>
-          <button type="button" class="flex items-center border-2 border-gray-400 bg-white text-gray-600 rounded-lg text-sm px-4 py-2">
+          </a>
+          <a href="{{path('app_login')}}" type="button" class="flex items-center border-2 border-gray-400 bg-white text-gray-600 rounded-lg text-sm px-4 py-2">
             <span>Connexion</span>
 
-          </button>
+          </a>
 
        
         </div>
@@ -77,9 +76,9 @@
                 required>
             </div>
 
-            <button type="submit"
+            <a href="{{path('registration')}}" type="submit"
               class="text-sky-950 bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">
-              Reservez</button>
+              Reservez</a>
           </div>
         </form>
       </div>

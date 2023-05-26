@@ -25,16 +25,18 @@ class PatientController extends AbstractController
     }
 
     
-    #[Route('/patient/{id}', name:'app_patient')]
-    public function index(int $id, RdvRepository $rdvRepository): Response
-    {
-    $rdvs = $rdvRepository->findBy(['patient' => $id]);
+        #[Route('/patient/{id}', name:'app_patient')]
+        public function index(int $id, RdvRepository $rdvRepository,UserRepository $userRepository): Response
+        {
+        $user = $userRepository->find($id);
+        $rdvs = $rdvRepository->findBy(['patient' => $id]);
 
-    return $this->render('patient/listRdv.html.twig', [
-        'id' => $id,
-        'rd' => $rdvs,
-    ]);
-    }
+        return $this->render('patient/listRdv.html.twig', [
+            'user' => $user,
+            'id' => $id,
+            'rd' => $rdvs,
+        ]);
+        }
 
     /**
      * @Route("/patient/addRdv/{id}", name="addRdv")
