@@ -1,31 +1,37 @@
 <table class="table table-striped">
-                        <thead>
-                            <th> Id Rdv</th>
-                            <th> Id Patient</th>
-                            <th> Date</th>
-                            <th> Heure </th>
-                            <th> Validité </th>
+    <thead>
+        <tr>
+            <th>Id Rdv</th>
+            <th>Id Patient</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Validité</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rdv in r %}
+            <tr>
+                <td>{{ rdv.id }}</td>
+                <td>{{ rdv.patient.id }}</td>
+                <td>{{ rdv.date|date('Y-m-d') }}</td>
+                <td>{{ rdv.time|date('H:i:s') }}</td>
+                <td>{{ rdv.valid }}</td>
 
-                        </thead>
-                        <tbody>
-                        {% for rdv in r %}
-                            <tr>
-                                <td> {{rdv.id}}</td>
-                                <td> {{rdv.patient.id}}</td>
-                                <td> {{rdv.date|date('Y-m-d')}}</td>
-                                <td> {{rdv.time|date('H:i:s')}}</td>
-                                <td> {{rdv.valid}}</td>
+                
+                <td>
+                    <a href="{{ path('updateRdv', {'id': rdv.id}) }}">Modifier</a>
+                </td>
 
-
-                                <td>
-                                    <a href="#">Modifier</a>
-                                </td>
-
-                                <td>
-                                    <a href="#">Supprimer</a>
-                                </td>
-
-                            </tr> 
-                        {% endfor %}
-                        </tbody>
-<table>
+                <td>
+                    <a href="{{ path('removeRdv', {'id': rdv.id}) }}">Supprimer</a>
+                </td>
+                {% if not (rdv.valid) %}
+                <td>
+                    <a href="{{ path('makeValid', {'id': rdv.id}) }}">Make Valid</a>
+                </td>
+                {%endif%}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

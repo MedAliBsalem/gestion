@@ -7,9 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Rdv;
 use App\Form\RdvSecType;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 
 class RdvController extends AbstractController
@@ -50,6 +53,51 @@ class RdvController extends AbstractController
         'form' => $form->createView(),
     ]);
     }
+
+    #[Route('rdv/removeRdv/{id}', name: 'removeRdv')]
+    public function suppRdv(Rdv $rdv,ManagerRegistry $registry): Response
+    {
+        $em = $registry->getManager();
+        $em->remove($rdv);
+        $em->flush();
+
+        return $this->redirectToRoute('list_rdv');
+    }
+
+    #[Route('rdv/updateRdv/{id}', name: 'updateRdv')]
+    public function edit(Request $request, int $id, EntityManagerInterface $entityManager): Response
+    {
+        $rdv = $entityManager->getRepository(Rdv::class)->find($id);
+
+        if (!$rdv) {
+            throw $this->createNotFoundException('No blog found for id '.$id);
+        }
+
+        $form = $this->createForm(RdvSecType::class, $rdv);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('list_rdv');
+        }
+
+        return $this->render('rdv/update.html.twig',['f'=>$form->createView()]);
+    }
+
+    #[Route('rdv/makeValid/{id}', name: 'makeValid')]
+    public function makeValid(int $id, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        $rdv = $entityManager->getRepository(Rdv::class)->find($id);
+
+        $rdv->setValid(true);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('list_rdv');
+    }
+
+
 
 
 

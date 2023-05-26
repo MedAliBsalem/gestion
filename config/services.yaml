@@ -21,4 +21,6 @@ services:
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
+    App\Entity\Rdv:
+        public: true
     # please note that last definitions always *replace* previous ones
