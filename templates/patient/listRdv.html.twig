@@ -97,11 +97,15 @@
       class="flex-col relative items-center bg-gradient-to-r from-sky-300 to-emerald-100 p-10 rounded-3xl h-full w-full">
       <div>
         <section class="grid grid-cols-3 gap-4 items-start justify-center">
-          <div class="flex-row justify-self-end">
+          <div>
             <h1 class="text-2xl font-semibold pb-8">Profil</h1>
             <div class="pt-8 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
               <div class="flex flex-col items-center pb-10">
-                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="images/02.jpg" alt="Bonnie image" />
+                {% if (user.sexe)=='femme' %}
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('images/femme.jpg') }}"/>
+                {%else%}
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('images/homme.jpg') }}"/>
+                {%endif%}
                 <h5 class="mb-1 text-xl font-medium text-gray-900">{{user.nom}} {{user.prenom}}</h5>
                 <span class="text-sm text-gray-500">EMAIL</span>
                 <span class="text-base font-medium leading-tight text-sky-950">{{user.email}}</span>
@@ -250,5 +254,3 @@
   </div>
 </body>
 </html>
-
-                        

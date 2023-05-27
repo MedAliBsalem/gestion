@@ -24,7 +24,7 @@
                 </td>
 
                 <td>
-                    <a href="{{ path('removeRdv', {'id': rdv.id}) }}">Supprimer</a>
+                    <a href="{{ path('delete_rdv', {'id': rdv.id}) }}">Supprimer</a>
                 </td>
                 {% if not (rdv.valid) %}
                 <td>

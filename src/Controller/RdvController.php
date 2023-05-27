@@ -54,12 +54,18 @@ class RdvController extends AbstractController
     ]);
     }
 
-    #[Route('rdv/removeRdv/{id}', name: 'removeRdv')]
-    public function suppRdv(Rdv $rdv,ManagerRegistry $registry): Response
+
+    #[Route('rdv/delete/{id}', name: 'delete_rdv')]
+    public function deleteRdv(int $id, EntityManagerInterface $entityManager): RedirectResponse
     {
-        $em = $registry->getManager();
-        $em->remove($rdv);
-        $em->flush();
+        $rdv = $entityManager->getRepository(Rdv::class)->find($id);
+
+        if (!$rdv) {
+            throw $this->createNotFoundException('No Rdv found for id ' . $id);
+        }
+
+        $entityManager->remove($rdv);
+        $entityManager->flush();
 
         return $this->redirectToRoute('list_rdv');
     }
