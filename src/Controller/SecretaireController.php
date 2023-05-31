@@ -56,6 +56,47 @@ class SecretaireController extends AbstractController
         return $this->redirectToRoute('sec_dashboard');
     }
 
+    #[Route('/secretaire/listRdv', name: 'listRdv')]
+    public function listrdv(ManagerRegistry $registry,Request $request,EntityManagerInterface $entityManager): Response
+    {
+        $entityManager = $registry->getManager();
+        $RdvRepository = $entityManager->getRepository(Rdv::class);
+        $rdvs = $RdvRepository->findAll();
+
+        $rdv = new Rdv();
+        $rdv->setValid(false);
+    
+        $form = $this->createForm(RdvSecType::class, $rdv);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($rdv);
+            $entityManager->flush();
+    
+            // You can redirect to a different route or page after saving the appointment
+            return $this->redirectToRoute('sec_dashboard');
+        }
+        
+
+        return $this->render('secretaire/listRdv.html.twig', [
+            'r'=>$rdvs,
+            'form' => $form->createView(),
+        ])
+        ;
+    }
+
+    #[Route('/secretaire/listPat', name: 'listPat')]
+    public function listpat(ManagerRegistry $registry): Response
+    {
+        $entityManager = $registry->getManager();
+        $UserRepository = $entityManager->getRepository(User::class);
+        $users = $UserRepository->findAll();
+
+        return $this->render('secretaire/listPat.html.twig', [
+            'u'=>$users,
+        ])
+        ;
+    }
 
 
 

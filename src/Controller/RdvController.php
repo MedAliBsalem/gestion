@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
 
@@ -67,7 +68,8 @@ class RdvController extends AbstractController
         $entityManager->remove($rdv);
         $entityManager->flush();
 
-        return $this->redirectToRoute('list_rdv');
+        return $this->redirectToRoute('sec_dashboard');
+
     }
 
     #[Route('rdv/updateRdv/{id}', name: 'updateRdv')]
