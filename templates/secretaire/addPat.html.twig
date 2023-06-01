@@ -138,7 +138,7 @@
                                 Linda Secretaire
                             </button>
                             <a href="#" class="relative block">
-                                <img alt="profil" src="{{ asset('images/femme.jpg') }}"
+                                <img alt="profil" src="images/femme.jpg"
                                     class="mx-auto object-cover rounded-full h-10 w-10 " />
                             </a>
                         </div>
@@ -147,140 +147,133 @@
                 <div class="h-screen px-4 pb-24 overflow-auto md:px-6">
                     <div class="flex justify-between items-center">
                         <h1 class="text-xl font-bold text-sky-950">
-                            Liste des rendez-vous
-                        </h1>
+                            Ajouter
+                            un patient </h1>
                     </div>
                     <div class="flex flex-col items-center w-full my-6 space-y-4 md:space-x-4 md:space-y-0 md:flex-row">
                         <div class="w-full md:w-full">
-                            <div class="grid grid-cols-3 relative w-full overflow-hidden bg-white shadow-lg rounded-lg">
-                                <div class="flex items-center justify-between px-4 py-6 space-x-4">
 
-                                <form class="flex items-center w-full">
-                                    {{form_start(form)}}
-
-                                        <div class="relative w-full">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
-                                            <input type="date" id="voice-search"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                                                required>
-                                        </div>
-                                    
-
-                                </div>
-                                <div class="flex items-center justify-between px-4 py-6 space-x-4">
-
-                                    
-                                        <div class="relative w-full">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
-                                            <input type="time" id="voice-search"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                                                required>
-                                        </div>
-                                </div>
-                                <div class="flex items-center justify-between px-4 py-6 space-x-4">
-                                        <button type="submit"
-                                            class="w-full inline-flex justify-center items-center py-2.5 px-3 ml-2 text-sm font-medium text-sky-950 bg-amber-400 rounded-lg hover:bg-amber-600">
-                                            <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24"
-                                                version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <g id="Iconly/Light/Time-Circle" stroke="#000000" stroke-width="1.5"
-                                                    fill="none" fill-rule="evenodd" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <g id="Time-Circle" transform="translate(2.000000, 2.000000)"
-                                                        stroke="#000000" stroke-width="1.5">
-                                                        <path
-                                                            d="M19.2498,10.0005 C19.2498,15.1095 15.1088,19.2505 9.9998,19.2505 C4.8908,19.2505 0.7498,15.1095 0.7498,10.0005 C0.7498,4.8915 4.8908,0.7505 9.9998,0.7505 C15.1088,0.7505 19.2498,4.8915 19.2498,10.0005 Z"
-                                                            id="Stroke-1"></path>
-                                                        <polyline id="Stroke-3"
-                                                            points="13.4314 12.9429 9.6614 10.6939 9.6614 5.8469">
-                                                        </polyline>
-                                                    </g>
-                                                </g>
-                                            </svg> Ajouter un rendez-vous
-                                        </button>
-                                    
-                                </form>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 gap-4 my-4 md:grid-cols-1 lg:grid-cols-1">
                         <div class="w-full">
-                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                      <table class="w-full text-sm text-left text-gray-500">
-                                    <thead class="text-xs text-sky-950 uppercase bg-gray-50">
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3">
-                                                IdRdv
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Nom & Prénom
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Date
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Heure
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Status
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                    {% for rdv in r %}
-                                        <tr class="bg-white border-b">
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                {{ rdv.id }}
-                                            </th>
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                {{ rdv.patient.nom }}
-                                                {{ rdv.patient.prenom }}
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                {{ rdv.date|date('Y-m-d') }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ rdv.time|date('H:i:s') }}
-                                            </td>
-                                            <td class="flex items-center px-6 py-4 space-x-3">
+                            <div class="flex justify-center items-center bg-white py-10 rounded-lg">
+                            
+                                    {{ form_start(form) }}
 
-                                                {%if not rdv.valid%}
-                                                <a href="{{ path('makeValid', {'id': rdv.id}) }}"
-                                                    class="rounded-md py-1 px-2 bg-emerald-100 font-medium text-emerald-600 hover:bg-green-200">Confirmer</a>
-                                                {%else%}
-                                                <a href="{{ path('makeValid', {'id': rdv.id}) }}"
-                                                    class="rounded-md py-1 px-2 bg-emerald-100 font-medium text-emerald-600 hover:bg-green-200">Confirmé</a>
-                                                {%endif%}
-                                                <a href="{{ path('delete_rdv', {'id': rdv.id}) }}"
-                                                    class="rounded-md py-1 px-2 font-medium bg-red-100 text-red-600 hover:bg-red-200">Annuler</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                        <div class="mb-6">
+                                            {{ form_widget(form.nom, {
+                                                'attr': {
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': 'Nom',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+                                        <div class="mb-6">
+                                            {{ form_widget(form.prenom, {
+                                                'attr': {
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': 'Prénom',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        
+                                        <div class="mb-6">
+                                        {{form_widget(form.sexe)}}
+                                        </div>
+
+
+                                        <div class="mb-6">
+                                            {{form_widget(form.dateNaiss)}}
+                                        </div>
+
+                                        <div class="mb-6">
+                                            {{ form_widget(form.numTel, {
+                                                'attr': {
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': '+216 50 123 456',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        <div class="mb-6">
+                                            {{ form_widget(form.email, {
+                                                'attr': {
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': 'exemple@email.com',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        <div class="mb-6">
+                                            {{ form_widget(form.adresse, {
+                                                'attr': {
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': 'Adresse',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        <div class="grid gap-6 md:grid-cols-2">
+                                            <div class="mb-6">
+                                            {{form_widget(form.ville)}}
+                                            </div>
+                                        <div>
+                                            {{ form_widget(form.codePostal, {
+                                                'attr': {
+                                                    'id': 'code',
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': '1000',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        </div>
+
+                                        <div class="mb-6">
+                                            {{ form_widget(form.matricule, {
+                                                'attr': {
+                                                    'id': 'matricule',
+                                                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                                    'placeholder': 'Matricule CNSS ',
+                                                    'required': 'required'
+                                                }
+                                            }) }}
+                                        </div>
+
+                                        <div class="mb-6">
+                                            {{ form_widget(form.password.first, {
+                                            'attr': {
+                                            'type': 'password',
+                                            'id': 'password',
+                                            'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                            'placeholder': 'Password',
+                                            'required': 'required'
+                                            }
+                                            }) }}
+                                        </div>
+
+                                                        <div class="mb-6">
+                                            {{ form_widget(form.password.second, {
+                                            'attr': {
+                                            'type': 'password',
+                                            'id': 'password',
+                                            'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                                            'placeholder': 'Confirm Password',
+                                            'required': 'required'
+                                            }
+                                            }) }}
+                                        </div>
+                                        {{ form_widget(form.ajouter)}}
+                                    {{ form_end(form) }}
+                
                             </div>
                         </div>
                     </div>

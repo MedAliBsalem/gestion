@@ -102,7 +102,7 @@ class RdvController extends AbstractController
         $rdv->setValid(true);
         $entityManager->flush();
 
-        return $this->redirectToRoute('list_rdv');
+        return $this->redirectToRoute('sec_dashboard');
     }
 
 

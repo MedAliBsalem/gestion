@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Rdv;
 use App\Form\RdvSecType;
+use App\Form\UserType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,9 +14,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+
 
 class SecretaireController extends AbstractController
 {
+
+    private $passwordHasher;
+    private $entityManager;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager)
+    {
+        $this->passwordHasher = $passwordHasher;
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/secretaire', name: 'sec_dashboard')]
     public function rdv(ManagerRegistry $registry): Response
     {
@@ -97,6 +111,63 @@ class SecretaireController extends AbstractController
         ])
         ;
     }
+
+    
+    #[Route('secretaire/addPat', name: 'addPat')]
+    public function addUser(Request $request, EntityManagerInterface $em): Response
+    {   
+            $user = new User();
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                // Hash the new user's password
+                $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+                $user->setPassword($hashedPassword);
+    
+                // Set their role
+                $user->setRoles(['ROLE_USER']);
+    
+                // Save
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+    
+                return $this->redirectToRoute('listPat');
+            }
+    
+
+            return $this->render('secretaire/addPat.html.twig',[
+            'form'=>$form->createView()]);
+        
+    }
+
+    #[Route('secretaire/updatePat/{id}', name: 'updatePat')]
+    public function edit(Request $request, int $id, EntityManagerInterface $entityManager): Response
+    {
+        $user = $entityManager->getRepository(User::class)->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('No blog found for id '.$id);
+        }
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('listPat');
+        }
+
+        return $this->render('secretaire/updatePat.html.twig',['form'=>$form->createView()]);
+    }
+
 
 
 
