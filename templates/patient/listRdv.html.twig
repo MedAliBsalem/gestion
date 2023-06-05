@@ -110,10 +110,9 @@
                 <span class="text-sm text-gray-500">EMAIL</span>
                 <span class="text-base font-medium leading-tight text-sky-950">{{user.email}}</span>
                 <div class="flex mt-4 space-x-3 md:mt-6">
-                  <a href="#"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Modifier</a>
-                  <a href="#"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200">Supprimer</a>
+                  <a href="{{ path('addRdv', {'id': user.id}) }}"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    Ajouter Rendez-Vous</a>
                 </div>
               </div>
             </div>
@@ -168,7 +167,7 @@
           </div>
           <div>
             <div>
-              <h5 class="text-2xl font-semibold pb-8">Fiche patient</h5>
+              <h5 class="text-2xl font-semibold pb-8">Info patient</h5>
               <!-- List -->
               <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow sm:p-8">
                 <ul role="list" class="space-y-5 my-7">
@@ -182,7 +181,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                     <span class="text-base font-normal leading-tight text-gray-500 ">ID de patient:</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">1236586</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.id}}</span>
                   </li>
                   <li class="flex space-x-3">
                     <!-- Icon -->
@@ -194,7 +193,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                     <span class="text-base font-normal leading-tight text-gray-500 ">Sexe:</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">Homme</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.sexe}}</span>
                   </li>
                   <li class="flex space-x-3">
                     <!-- Icon -->
@@ -206,7 +205,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                     <span class="text-base font-normal leading-tight text-gray-500 ">Naissance:</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">01/01/1994</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.dateNaiss|date('Y-m-d') }}</span>
                   </li>
                   <li class="flex space-x-3">
                     <!-- Icon -->
@@ -217,8 +216,8 @@
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-base font-normal leading-tight text-gray-500">Groupes sanguins:</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">A+</span>
+                    <span class="text-base font-normal leading-tight text-gray-500">Matricule CNSS:</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.Matricule}}</span>
                   </li>
                   <li class="flex space-x-3">
                     <!-- Icon -->
@@ -229,8 +228,8 @@
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-base font-normal leading-tight text-gray-500 ">Taille</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">180cm</span>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Ville</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.Ville}}</span>
                   </li>
                   <li class="flex space-x-3">
                     <!-- Icon -->
@@ -241,8 +240,8 @@
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-base font-normal leading-tight text-gray-500 ">Poids</span>
-                    <span class="text-base font-medium leading-tight text-sky-950">80Kg</span>
+                    <span class="text-base font-normal leading-tight text-gray-500 ">Numero GSM</span>
+                    <span class="text-base font-medium leading-tight text-sky-950">{{user.numTel}}</span>
                   </li>
                 </ul>
               </div>

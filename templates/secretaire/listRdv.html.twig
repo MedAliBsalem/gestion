@@ -271,8 +271,8 @@
                                                 <a href="{{ path('makeValid', {'id': rdv.id}) }}"
                                                     class="rounded-md py-1 px-2 bg-emerald-100 font-medium text-emerald-600 hover:bg-green-200">Confirmer</a>
                                                 {%else%}
-                                                <a href="{{ path('makeValid', {'id': rdv.id}) }}"
-                                                    class="rounded-md py-1 px-2 bg-emerald-100 font-medium text-emerald-600 hover:bg-green-200">Confirmé</a>
+                                                <p
+                                                    class="rounded-md py-1 px-2 font-medium text-emerald-600">Confirmé</p>
                                                 {%endif%}
                                                 <a href="{{ path('delete_rdv', {'id': rdv.id}) }}"
                                                     class="rounded-md py-1 px-2 font-medium bg-red-100 text-red-600 hover:bg-red-200">Annuler</a>
