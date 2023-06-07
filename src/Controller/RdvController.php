@@ -50,7 +50,7 @@ class RdvController extends AbstractController
         return $this->redirectToRoute('list_rdv');
     }
 
-    return $this->render('rdv/AddRdv.html.twig', [
+    return $this->render('secretaire/AddRdv.html.twig', [
         'form' => $form->createView(),
     ]);
     }
