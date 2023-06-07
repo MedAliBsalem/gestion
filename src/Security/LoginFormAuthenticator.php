@@ -49,6 +49,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $user = $token->getUser();
         if (in_array('ROLE_SEC', $user->getRoles(), true)) {
             return new RedirectResponse($this->urlGenerator->generate('sec_dashboard'));
+        }elseif (in_array('ROLE_DOC', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_doctor'));
         }
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('addRdv',['id' => $user->getId()]));
@@ -57,7 +59,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     protected function getLoginUrl(Request $request): string
-    {
+    {  
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
