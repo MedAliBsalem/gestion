@@ -15,7 +15,7 @@ class Rdv
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false,onDelete: 'CASCADE')]
     private ?User $patient = null;
 
     #[ORM\Column]
@@ -26,6 +26,9 @@ class Rdv
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $time = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $consulted = null;
 
     public function getId(): ?int
     {
@@ -76,6 +79,18 @@ class Rdv
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function isConsulted(): ?bool
+    {
+        return $this->consulted;
+    }
+
+    public function setConsulted(?bool $consulted): self
+    {
+        $this->consulted = $consulted;
 
         return $this;
     }
