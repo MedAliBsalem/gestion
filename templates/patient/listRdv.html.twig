@@ -38,12 +38,13 @@
           </button>
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <img class="block h-8 w-auto lg:hidden"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-            <img class="hidden h-8 w-auto lg:block"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-          </div>
+          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex flex-shrink-0 items-center">
+                        <img class="block h-12 w-auto lg:hidden" src="{{ asset('images/logo.svg') }}" alt="Your Company">
+                         
+                        <img class="hidden h-12 w-auto lg:block" src="{{ asset('images/logo.svg') }}" alt="Your Company">
+                    </div>
+                </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <a href="{{path('app_patient',{'id':id})}}" type="button" class=" flex items-center bg-amber-400 mr-4 rounded-lg text-sm px-4 py-2">

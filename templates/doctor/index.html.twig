@@ -39,12 +39,13 @@
           </button>
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <img class="block h-8 w-auto lg:hidden"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-            <img class="hidden h-8 w-auto lg:block"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-          </div>
+          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex flex-shrink-0 items-center">
+                        <img class="block h-12 w-auto lg:hidden" src="{{ asset('images/logo.svg') }}" alt="Your Company">
+                         
+                        <img class="hidden h-12 w-auto lg:block" src="{{ asset('images/logo.svg') }}" alt="Your Company">
+                    </div>
+            </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <a href="{{ path('app_logout') }}"
@@ -73,9 +74,9 @@
       </div>
     </div>
   </nav>
-  <div class="px-10 flex-col items-center content-center h-full">
+  <div class="px-10 flex-col items-center content-center mb-20 h-screen">
     <div
-      class="flex-col relative items-center bg-gradient-to-r from-sky-300 to-emerald-100 p-10 rounded-3xl h-full w-full">
+      class="flex-col relative items-center mb-10 bg-gradient-to-r from-sky-300 to-emerald-100 p-10 rounded-3xl min-h-full w-full">
       <div>
         <section class="flex justify-center">
           <div class="flex-auto justify-center pe-4">
@@ -144,37 +145,7 @@
     </div>
 
   </div>
-      <footer class="bg-sky-950 py-4 px-11 mt-4 mx-10 rounded-lg">
-        <div class="grid grid-cols-3 gap-2 mb-2">
-            <div class="w-full h-full flex justify-center items-center rounded-lg">
-                <span class="mr-2"><img src="{{ asset('images/location.svg') }}" alt=""></span>
-                 
-                <span class=" text-white font-bold flex justify-center items-center text-center">Iset
-                    Sousse</span>
-            </div>
-            <div class="w-full h-full flex justify-center items-center border-white border-l-2 border-r-2">
-                <span class="mr-2"><img src="{{ asset('images/message.svg') }}" alt=""></span>
-                
-                <span class=" text-white font-bold flex justify-center items-center text-center">
-                    tbibskoli@gmail.com
-                </span>
-            </div>
-            <div class="w-full h-full flex justify-center items-center rounded-lg">
-                <span class="mr-2"><img src="{{ asset('images/call.svg') }}" alt=""></span>
-                
-                <span class=" text-white font-bold flex justify-center items-center text-center">+216 50 123
-                    456</span>
-            </div>
-        </div>
-        <div class="w-full h-full flex justify-center items-center mt-10 border-t-2 borderwhite">
-            <p class=" text-white font-medium flex justify-center items-center text-center mt-2">Made with <span
-                    class="mx-2"><img src="{{ asset('images/red-heart.svg') }}" alt=""></span>
-                    
-                Abdelhak, Mohammed
-                ali ,
-                Rahma and Walid</p>
-        </div>
-    </footer>
+    
 
 </body>
 
