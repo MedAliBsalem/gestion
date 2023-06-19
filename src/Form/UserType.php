@@ -11,13 +11,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\LessThan;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email')
+        ->add('email', EmailType::class, [
+            'constraints' => [
+                new Email(['message' => 'Please enter a valid email address.']),
+            ],
+        ])
         ->add('nom')
         ->add('prenom')
         ->add('sexe', ChoiceType::class, [
@@ -38,6 +48,19 @@ class UserType extends AbstractType
                 'class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
                 'placeholder' => '01/01/2023',
             ],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Please enter your date of birth.',
+                ]),
+                new LessThan([
+                    'value' => '-18 years',
+                    'message' => 'You must be at least 18 years old.',
+                ]),
+                new GreaterThanOrEqual([
+                    'value' => '-100 years',
+                    'message' => 'Please provide a valid date of birth.',
+                ]),
+            ],
         ])
         ->add('adresse')
         ->add('codePostal')
@@ -54,6 +77,7 @@ class UserType extends AbstractType
         ->add('numTel')
         ->add('password',RepeatedType::class, [
             'type'=>PasswordType::class,
+            'invalid_message'=>'mot de passe ne correspondent pas ',
             'first_options'=>['label'=>'Password'],
             'second_options'=>['label'=>'Confirm Password']
         ])

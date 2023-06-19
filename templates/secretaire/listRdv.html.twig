@@ -161,13 +161,12 @@
 
                                 <form class="flex items-center w-full" method="POST">
                                     {{form_start(form)}}
-
+                                        
                                         <div class="relative w-full">
-                                           
-    
-                                         {{ form_widget(form.patient)}}
-
+                                            {{ form_widget(form.patient) }}
                                         </div>
+
+                                        
                                     
 
                                 </div>
@@ -209,6 +208,17 @@
                                                 </g>
                                             </svg> Ajouter un rendez-vous
                                         </button>
+                                            <br>
+                                             {# Render field errors #}
+                                            {% if form.date.vars.errors|length > 0 %}
+                                                <ul class="error-list">
+                                                    {% for error in form.date.vars.errors %}
+                                                        <li>{{ error.message }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+
+
                                 {{form_end(form)}}
                                 </form>
 
@@ -244,7 +254,7 @@
                                     </thead>
                                     
                                     <tbody>
-                                    {% for rdv in r %}
+                                    {% for rdv in r|reverse %}
                                         <tr class="bg-white border-b">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">

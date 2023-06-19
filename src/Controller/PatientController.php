@@ -11,17 +11,28 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\UserRepository;
 use App\Repository\RdvRepository;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Security;
+
+
 
 class PatientController extends AbstractController
 {
 
     private $userRepository;
     private $entityManager;
+    private $authorizationChecker;
 
-    public function __construct(RdvRepository $rdvRepository,UserRepository $userRepository, EntityManagerInterface $entityManager)
+    public function __construct(RdvRepository $rdvRepository,UserRepository $userRepository, EntityManagerInterface $entityManager,AuthorizationCheckerInterface $authorizationChecker
+    )
     {
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
+        $this->authorizationChecker = $authorizationChecker;
+
+
+        
     }
 
     
@@ -41,14 +52,26 @@ class PatientController extends AbstractController
     /**
      * @Route("/patient/addRdv/{id}", name="addRdv")
      */
-    public function addRdv(Request $request, int $id): Response
+    public function addRdv(Request $request, int $id,Security $security): Response
     {
         $user = $this->userRepository->find($id);
+
+        $loggedInUser = $security->getUser();
+        if (!$loggedInUser) {
+            throw new AccessDeniedException('You are not authorized to access this resource.');
+        }
+        if ($loggedInUser->getId() !== $id) {
+            throw new AccessDeniedException('You are not authorized to access this resource.');
+        }
 
         if (!$user) {
             throw $this->createNotFoundException('User not found');
         }
-
+        
+        if (!$this->authorizationChecker->isGranted('ROLE_USER') && $user->getId() !== $id) {
+            throw new AccessDeniedException('You are not authorized to access this resource.');
+        }
+        
         $rdv = new Rdv();
         $rdv->setPatient($user);
         $rdv->setValid(false);

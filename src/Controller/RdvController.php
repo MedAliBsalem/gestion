@@ -47,10 +47,10 @@ class RdvController extends AbstractController
         $entityManager->flush();
 
         // You can redirect to a different route or page after saving the appointment
-        return $this->redirectToRoute('list_rdv');
+        return $this->redirectToRoute('listRdv');
     }
 
-    return $this->render('secretaire/AddRdv.html.twig', [
+    return $this->render('secretaire/listRdv.html.twig', [
         'form' => $form->createView(),
     ]);
     }

@@ -15,7 +15,7 @@ class Rdv
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false,onDelete: 'CASCADE')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $patient = null;
 
     #[ORM\Column]

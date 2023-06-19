@@ -88,7 +88,7 @@ class SecretaireController extends AbstractController
             $entityManager->flush();
     
             // You can redirect to a different route or page after saving the appointment
-            return $this->redirectToRoute('sec_dashboard');
+            return $this->redirectToRoute('listRdv');
         }
         
 
